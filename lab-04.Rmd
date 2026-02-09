@@ -42,14 +42,19 @@ There are `r nrow(laquinta)` rows and `r ncol(laquinta)` columns.
 Each row represents a location of La Quinta, and columns are details of each location.
 
 ### Exercise 3
+There are some La Quintas outside of the US: Canada, Mexico, China, New Zealand, Georgia, Turkiye, UAE, Columbia, Ecuador
 
-...
+I don't see any Denny's outside of US on the website.
 
 ### Exercise 4
-
-...
+One idea is to count NA values for the "state" columns. 
 
 ### Exercise 5
+```{r}
+dennys %>%
+  filter(!(state %in% states$abbreviation))
+```
+There are no Dennys outside of the US
 
 ...
 
@@ -59,4 +64,8 @@ Each row represents a location of La Quinta, and columns are details of each loc
 
  
 Add exercise headings as needed.
+
+### Exercise 7
+laquinta %>%
+  filter(!(state %in% states$abbreviation))
 
