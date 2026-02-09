@@ -1,7 +1,7 @@
 Lab 04 - La Quinta is Spanish for next to Denny’s, Pt. 1
 ================
-Insert your name here
-Insert date here
+Haley Lam
+2/9/2025
 
 ### Load packages and data
 
@@ -16,15 +16,47 @@ states <- read_csv("data/states.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here. Add code
-chunks as needed. Don’t forget to label your code chunk. Do not use
-spaces in code chunk labels.
+``` r
+data(dennys)
+dennys <- dennys
+
+nrow(dennys)
+```
+
+    ## [1] 1643
+
+``` r
+ncol(dennys)
+```
+
+    ## [1] 6
+
+There are 1643 rows and 6 columns.
+
+Each row is a location of Dennys, and columns are the details of each
+location.
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 1 here. Add code
-chunks as needed. Don’t forget to label your code chunk. Do not use
-spaces in code chunk labels.
+``` r
+data(laquinta)
+laquinta <- laquinta
+
+nrow(laquinta)
+```
+
+    ## [1] 909
+
+``` r
+ncol(laquinta)
+```
+
+    ## [1] 6
+
+There are 909 rows and 6 columns.
+
+Each row represents a location of La Quinta, and columns are details of
+each location.
 
 ### Exercise 3
 

@@ -1,7 +1,7 @@
 ---
 title: "Lab 04 - La Quinta is Spanish for next to Denny's, Pt. 1"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Haley Lam"
+date: "2/9/2025"
 output: github_document
 ---
 
@@ -17,18 +17,29 @@ states <- read_csv("data/states.csv")
 ```
 
 ### Exercise 1
+```{r}
+data(dennys)
+dennys <- dennys
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+nrow(dennys)
+ncol(dennys)
+```
+
+There are `r nrow(dennys)` rows and `r ncol(dennys)` columns.
+
+Each row is a location of Dennys, and columns are the details of each location.
 
 ### Exercise 2
+```{r}
+data(laquinta)
+laquinta <- laquinta
 
-Remove this text, and add your answer for Exercise 2 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+nrow(laquinta)
+ncol(laquinta)
+```
+There are `r nrow(laquinta)` rows and `r ncol(laquinta)` columns.
+
+Each row represents a location of La Quinta, and columns are details of each location.
 
 ### Exercise 3
 
