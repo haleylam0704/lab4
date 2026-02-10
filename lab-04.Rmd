@@ -59,13 +59,114 @@ There are no Dennys outside of the US
 ...
 
 ### Exercise 6
-
-...
-
- 
-Add exercise headings as needed.
+```{r}
+dennys <- dennys %>%
+  mutate(country = "United States")
+```
 
 ### Exercise 7
+```{r}
 laquinta %>%
   filter(!(state %in% states$abbreviation))
+```
+Peru, Mexico, Columbia, Canada, Honduras
 
+### Exercise 8
+```{r}
+laquinta <- laquinta %>%
+  mutate(country = case_when(
+    state %in% state.abb ~ "United States",
+    state %in% c("ON", "BC") ~ "Canada",
+    state == "ANT" ~ "Colombia",
+    state == "AG" ~ "Peru",
+    state %in% c("QR", "CH", "NL", "VE", "PU") ~ "Mexico",
+    state == "FM" ~ "Hondorus")
+  )
+```
+
+```{r}
+laquinta <- laquinta %>%
+  filter(country == "United States")
+```
+
+
+### Exercise 9
+```{r}
+dennys %>%
+  count(state, sort = TRUE)
+laquinta %>%
+  count(state, sort = TRUE)
+```
+California, Texas, and Florida have the most Dennys. Delaware, Vermont, and DC (District of Columbia?) have the least. 
+
+This is not surprising, because TX, CA, and FL are huge with many people!
+
+```{r}
+new_dn <- dennys %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
+
+new_lq <- laquinta %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
+```
+
+### Exercise 10
+```{r}
+new_dn %>%
+  mutate(ratio = n / area) %>%
+  arrange(desc(ratio))
+```
+```{r}
+new_lq %>%
+  mutate(ratio = n / area) %>%
+  arrange(desc(ratio))
+```
+DoC, Rhode Island, and Calirfornia are the states with the most Dennys per sq mile.
+
+Rhode Island, Florida, and Connecticut are states with the most La Quintas per sq mile.
+
+```{r}
+dennys <- dennys %>%
+  mutate(establishment = "Denny's")
+laquinta <- laquinta %>%
+  mutate(establishment = "La Quinta")
+
+dn_lq <- bind_rows(dennys, laquinta)
+
+```
+
+```{r}
+ggplot(dn_lq, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point()
+```
+
+### Exercise 11
+```{r}
+dn_lq %>% 
+  filter(state == "NC") %>%
+  ggplot(dn_lq, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point()
+```
+I think it looks mostly true when looking at where there exist La Quintas (i.e., whenever there's a La Quinta, right next to it there is also usually a Denny's). 
+
+### Exercise 12
+```{r}
+dn_lq %>% 
+  filter(state == "TX") %>%
+  ggplot(dn_lq, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point()
+```
+It does seem like a lot of Denny's are right next to La Quintas, but there are also many La Quinta locations that don't have Denny's next to them (unless they're right on top of each other!). There are odd clusters of La Quintas and Denny's, though.
